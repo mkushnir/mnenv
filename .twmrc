@@ -1,0 +1,275 @@
+#for defaults, see $LOCALBASE/share/X11/twm/system.twmrc
+# useful links:
+#   http://www.custompc.plus.com/twm/configs/
+#   http://www.custompc.plus.com/twm/twmrc.htm
+#   https://www.ict.griffith.edu.au/anthony/icons/docs/icons.twm
+
+NoDefaults
+
+
+#AutoRaise { "XTerm" }
+
+#NoIconManagers
+#ShowIconManager
+#SortIconManager
+#IconManagerDontShow {}
+#IconManagerShow {}
+IconManagerGeometry "=1440x1080+0+0" 16
+
+# fallback for the bitmapFilePath resource
+IconDirectory "~/.icons/"
+#IconDirectory "/usr/local/share/icons/Tango"
+
+ForceIcons
+Icons {
+    "XTerm" "default/freebsd-01.xbm"
+    "Gimp" "default/gimp-01.xbm"
+    "Firefox" "default/firefox-02.xbm"
+    "mpv" "default/mpv-02.xbm"
+    #"xpdf" "default/freebsd-01.xbm"
+
+}
+UnknownIcon "default/freebsd-01.xbm"
+
+# give child windows title bar and borders
+DecorateTransients
+DontMoveOff
+NoGrabServer
+#RestartPreviousState
+RandomPlacement
+OpaqueMove
+AutoRelativeResize
+# no sticky vertical/horizontal move
+ConstrainedMoveTime 0
+NoCaseSensitive
+
+WarpCursor
+# for f.warpto ...
+WarpUnmapped
+
+
+WindowRing {
+    "XTerm"
+    "Firefox"
+    "mpv"
+    "feh"
+    "Gimp"
+    "Xpdf"
+}
+
+
+
+NoTitleFocus
+NoSaveUnders
+#NoTitleHighlight
+#SqueezeTitle
+NoTitle {
+    "TWM Icon Manager"
+    "xclock"
+    "mpv"
+    "feh"
+}
+
+#IconRegion "=800x100+0+0" North West 10 10
+
+IconManagerDontShow {
+    "xclock"
+}
+DontIconifyByUnmapping {
+    "xclock"
+}
+
+ClientBorderWidth
+NoHighlight
+
+FramePadding 0
+
+BorderWidth 0
+IconBorderWidth 0
+MenuBorderWidth 0
+TitleButtonBorderWidth 0
+TitlePadding 4
+
+TitleFont "-*-dejavu sans light-extralight-r-normal--*-90-*-*-*-*-*-*"
+#TitleFont "-misc-inconsolata lgc-medium-r-normal--*-90-*-*-*-*-*-*"
+ResizeFont "-misc-inconsolata lgc-medium-r-normal--*-90-*-*-*-*-*-*"
+#MenuFont "-misc-inconsolata lgc-medium-r-normal--*-90-*-*-*-*-*-*"
+MenuFont "-*-arial-medium-r-normal--*-90-*-*-*-*-*-*"
+#IconFont "-misc-inconsolata lgc-medium-r-normal--*-90-*-*-*-*-*-*"
+IconFont "-*-dejavu sans light-extralight-r-normal--*-90-*-*-*-*-*-*"
+#IconManagerFont "-misc-inconsolata lgc-medium-r-normal--*-90-*-*-*"
+IconManagerFont "-*-dejavu sans light-extralight-r-normal--*-90-*-*-*-*-*-*"
+
+
+Color
+{
+    #BorderColor             "#cccacc"
+    BorderColor             "#000000"
+    DefaultBackground       "rgb:0/0/0"
+    DefaultForeground       "#cccacc"
+    #TitleBackground         "rgb:0/0/0"
+    TitleBackground         "#28282c"
+    #TitleForeground         "rgb:5/5/5"
+    TitleForeground         "#585878"
+    #MenuBackground          "rgb:0/0/0"
+    MenuBackground          "#28282c"
+    #MenuForeground          "#cccacc"
+    MenuForeground          "#585878"
+    MenuBorderColor         "black"
+    MenuTitleBackground     "#28282c"
+    MenuTitleForeground     "#785878"
+    IconBackground          "rgb:0/0/0"
+    IconForeground          "#cccacc"
+    IconBorderColor         "#cccacc"
+    IconManagerBackground   "#28282c"
+    IconManagerForeground   "#585878"
+    IconManagerHighlight    "#000000"
+}
+
+Cursors
+{
+    frame   "left_ptr"
+    title   "left_ptr"
+    icon    "left_ptr"
+    iconmgr "left_ptr"
+    menu    "left_ptr"
+    button  "hand2" # hand1
+}
+
+#Pixmaps {
+#    TitleHightlight "flipped_gray"
+#}
+
+#
+# system.twmrc replcation
+#
+MoveDelta 3
+Function "move-or-lower" { f.move f.deltastop f.lower }
+Function "move-or-raise" { f.move f.deltastop f.raise }
+Function "move-or-iconify" { f.move f.deltastop f.iconify }
+Function "wnext" {
+    f.warpring "next"
+}
+Function "wprev" {
+    f.warpring "prev"
+}
+
+Function "qwe" {
+    f.showiconmgr
+    #f.downiconmgr
+    f.forwiconmgr
+}
+
+Function "asd" {
+    f.showiconmgr
+    #f.upiconmgr
+    f.backiconmgr
+}
+
+
+Button1 =    : root        : f.menu "ops"
+Button2 =    : root        : f.menu "TwmWindows"
+Button3 =    : root        : f.menu "apps"
+
+Button1 =    : iconmgr : f.iconify
+#Button3 =    : iconmgr : f.warp
+
+Button1 =    : title       : f.function "move-or-raise"
+Button3 =    : title       : f.menu "window"
+
+Button1 =    : icon        : f.function "move-or-raise"
+Button2 =    : icon        : f.beep
+Button3 =    : icon        : f.menu "icon"
+
+Button1 = m  : window|icon : f.function "move-or-raise"
+Button2 = m  : window|icon : f.iconify
+Button3 = m  : window|icon : f.resize
+
+#Button3 = : window : f.function "move-or-raise"
+#Button3 = : title : f.delete
+
+#Button1 = : icon : f.function "move-or-iconify"
+#Button2 = : icon : f.iconify
+#
+
+
+#RightTitleButton "xlogo11" = f.delete
+
+
+
+#
+# Hot keys
+#
+"F4"    = m     : all : f.delete
+"F4"    = m4    : all : f.quit
+"Print" =       : all : f.exec "my-scrot &"
+"Tab"   = m     : all : f.function "wprev"
+"Tab"   = m|s   : all : f.function "wnext"
+"Tab"   = m4    : all : f.function "qwe"
+"Tab"   = m4|s  : all : f.function "asd"
+"f"     = m4    : all : f.exec "firefox &"
+"g"     = m4    : all : f.exec "gimp &"
+"i"     = m4    : all : f.showiconmgr
+"j"     = m4    : all : f.hideiconmgr
+"l"     = m4    : all : f.exec "xlock &"
+"m"     = m     : all : f.iconify
+"m"     = m4    : all : f.iconify
+"space" = m     : all : f.fullzoom
+"t"     = m4    : all : f.exec "xterm &"
+"r"     = m4    : all : f.restart
+
+#
+# And menus with the usual things
+#
+menu "ops"
+{
+    "Operations"    f.title
+    "Iconify ..."   f.iconify
+    "Move ..."      f.move
+    "Resize ..."    f.resize
+    "Raise ..."     f.raise
+    "Lower ..."     f.lower
+    ""              f.nop
+    "Focus ..."     f.focus
+    "Unfocus ..."   f.unfocus
+    "Show Iconmgr"  f.showiconmgr
+    "Hide Iconmgr"  f.hideiconmgr
+    ""              f.nop
+    "Identify ..."  f.identify
+    "Delete ..."    f.delete
+    "Destroy ..."   f.destroy
+    ""              f.nop
+    "Refresh ..."   f.winrefresh
+    "Restart"       f.restart
+    #"Read .twmrc"   f.twmrc
+    "Version"       f.version
+    ""              f.nop
+    "Quit"          f.quit
+}
+
+menu "apps" {
+    "Applications"  f.title
+    "Xterm"         f.exec "exec xterm &"
+    "Firefox"       !"firefox &"
+}
+
+
+menu "icon" {
+    "This application..."   f.title
+    "Show/Hide"             f.iconify
+    "Identify"              f.identify
+    ""                      f.nop
+    "Delete"                f.delete
+    "Destroy"               f.destroy
+}
+
+menu "window" {
+    "This application..."   f.title
+    "Show/Hide"             f.iconify
+    "Move ..."              f.move
+    "Resize ..."            f.resize
+    "Identify"              f.identify
+    ""                      f.nop
+    "Delete"                f.delete
+    "Destroy"               f.destroy
+}

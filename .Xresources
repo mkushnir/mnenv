@@ -1,0 +1,52 @@
+*StringConversionWarnings:on
+!*faceName:lucida console
+!*faceName:liberation mono
+!*faceName:droid sans mono
+!*faceName:dejavu sans mono
+*faceName:inconsolata lgc
+!*faceName:luxi mono
+!*faceName:Bitstream Vera Sans Mono
+*faceSize:9
+*selectToClipboard: on
+*borderWidth:0
+*titeInhibit:off
+*charClass:33:48,35:48,37-38:48,43-47:48,58:48,61:48,63-64:48,95:48,126:48
+XTerm*background:#101010
+!XTerm*background:#ffffff
+XTerm*foreground:#969696
+XTerm*boldMode:false
+!XTerm*background:#000000
+!XTerm*foreground:#ffffff
+!XTerm*foreground:#bbddcc
+!XTerm*foreground:#ccbbff
+!XTerm*termName:linux
+XTerm.vt100.altSendsEscape:on
+!XTerm*jumpScroll:on
+
+xscreensaver.splash:false                                                       
+xscreensaver.passwdTimeout:5
+*customization: -color
+
+
+*test-box*background:#cccacc
+*test-label.foreground:green
+*test-label.pointerColor:red
+*test-command.shapeStyle:Oval
+*test-command.highlightThickness:0
+*test-box.width:1000
+*test-box.height:1000
+
+test-xt.marek:This is the test
+
+!*qwe.background:#cccacc
+
+! non-default gnuplot
+gnuplot*background:#101010
+gnuplot*textColor:#eeeeee
+gnuplot*borderColor:#eeeeee
+gnuplot*axisColor:#eeeeee
+gnuplot*borderWidth:0
+
+
+!*font:inconsolata lgc
+!*reverseVideo:true
