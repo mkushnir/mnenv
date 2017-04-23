@@ -136,32 +136,36 @@ vnoremap <leader>b :call BCComment()<cr>
 vnoremap <leader>B :call BCUncomment()<cr>
 
 function! Comment()
-    if &filetype == 'c' || &filetype == 'cpp' || &filetype == 'lex' || &filetype == 'yacc' || &filetype == 'eql'
+    if &filetype == 'c' || &filetype == 'cpp' || &filetype == 'lex' || &filetype == 'yacc' || &filetype == 'eql' || &filetype == 'javascript'
         exec "normal" "I//\<esc>j"
     elseif &filetype == 'vim'
         exec "normal" "I\"\<esc>j"
-    elseif &filetype == 'lua'
+    elseif &filetype == 'lua' || &filetype == 'sql'
         exec "normal" "I\--\<esc>j"
     elseif &filetype == 'lkit'
         exec "normal" "I\;\<esc>j"
     elseif &filetype == 'llvm'
         exec "normal" "I\;\<esc>j"
+    elseif &filetype == 'xdefaults'
+        exec "normal" "I\!\<esc>j"
     else
         exec "normal" "I#\<esc>j"
     endif
 endfunction
 
 function! BComment() range
-    if &filetype == 'c' || &filetype == 'cpp' || &filetype == 'lex' || &filetype == 'yacc' || &filetype == 'eql'
+    if &filetype == 'c' || &filetype == 'cpp' || &filetype == 'lex' || &filetype == 'yacc' || &filetype == 'eql' || &filetype == 'javascript'
         let repl = '\1//'
     elseif &filetype == 'vim'
         let repl = '\1"'
-    elseif &filetype == 'lua'
+    elseif &filetype == 'lua' || &filetype == 'sql'
         let repl = '\1--'
     elseif &filetype == 'lkit'
         let repl = '\1;'
     elseif &filetype == 'llvm'
         let repl = '\1;'
+    elseif &filetype == 'xdefaults'
+        let repl = '\1!'
     else
         let repl = '\1#'
     endif
@@ -175,32 +179,36 @@ function! BComment() range
 endfunction
 
 function! UnComment()
-    if &filetype == 'c' || &filetype == 'cpp' || &filetype == 'lex' || &filetype == 'yacc' || &filetype == 'eql'
+    if &filetype == 'c' || &filetype == 'cpp' || &filetype == 'lex' || &filetype == 'yacc' || &filetype == 'eql' || &filetype == 'javascript'
         s/^\(\s*\)\/\//\1/
     elseif &filetype == 'vim'
         s/^\(\s*\)"/\1/
-    elseif &filetype == 'lua'
+    elseif &filetype == 'lua' || &filetype == 'sql'
         s/^\(\s*\)--/\1/
     elseif &filetype == 'lkit'
         s/^\(\s*\);/\1/
     elseif &filetype == 'llvm'
         s/^\(\s*\);/\1/
+    elseif &filetype == 'xdefaults'
+        s/^\(\s*\)!/\1/
     else
         s/^\(\s*\)#/\1/
     endif
 endfunction
 
 function! BUnComment() range
-    if &filetype == 'c' || &filetype == 'cpp' || &filetype == 'lex' || &filetype == 'yacc' || &filetype == 'eql'
+    if &filetype == 'c' || &filetype == 'cpp' || &filetype == 'lex' || &filetype == 'yacc' || &filetype == 'eql' || &filetype == 'javascript'
         let pat = '//'
     elseif &filetype == 'vim'
         let pat = '"'
-    elseif &filetype == 'lua'
+    elseif &filetype == 'lua' || &filetype == 'sql'
         let pat = '--'
     elseif &filetype == 'lkit'
         let pat = ';'
     elseif &filetype == 'llvm'
         let pat = ';'
+    elseif &filetype == 'xdefaults'
+        let pat = '!'
     else
         let pat = '#'
     endif
@@ -261,11 +269,17 @@ function! MyCExt()
         syn match mrktrace /\<TRACEC\>/
         syn match mrktrace /\<CTRACE\>/
         syn match mrktrace /\<TRACE\>/
+        syn match mrkcomm /\<UNUSED\>/
+        syn match mrkcomm /\<MRKLIKELY\>/
+        syn match mrkcomm /\<MRKUNLIKELY\>/
+        syn match mrkcomm /\<FAIL\>/
         hi _mrkl4c ctermfg=darkyellow
         hi _mrktrace ctermfg=darkyellow
+        hi _mrkcomm ctermfg=darkgreen
         command -nargs=+ HiLink hi def link <args>
         HiLink mrkl4c _mrkl4c
         HiLink mrktrace _mrktrace
+        HiLink mrkcomm _mrkcomm
         delcommand HiLink
     endif
 endfunction
