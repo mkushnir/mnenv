@@ -1,3 +1,4 @@
+set exrc
 set nocompatible
 set showmode
 set showcmd
@@ -7,7 +8,10 @@ set nolist
 set listchars=tab:>-,trail:-
 set modeline
 
-set exrc
+if v:version >= 800
+    set fixendofline
+endif
+"set termguicolors
 
 set tags+=/home/mkushnir/development/tags
 
@@ -21,9 +25,11 @@ au BufNewFile,BufRead *.jt          setf html
 
 
 set backspace=indent,eol,start
-set tabstop=8
+
 set softtabstop=4
 set shiftwidth=4
+set tabstop=8
+
 set expandtab
 
 "set nowrap
@@ -32,31 +38,41 @@ set textwidth=74
 set formatoptions=qrn1
 set splitright
 
-"au BufNewFile,BufRead *.ly setf ly
-"au Syntax ly runtime! /usr/local/share/lilypond/current/vim/syntax/lilypond.vim
-
 syntax on
 
-color elflord
+colorscheme elflord
+"set colorcolumn=+0
+"hi ColorColumn ctermbg=darkgray
+
 set foldmethod=indent
 set foldlevelstart=99
 set nonumber
-set modeline
 set nohidden
 set wildmenu
 set wildmode=list:longest
 set cursorline
 set ttyfast
 let python_highlight_all=1
+" see syntax/c.vim
 let c_space_errors=1
 set ignorecase
 set smartcase
 set gdefault
-set incsearch
+if has('reltime')
+  set incsearch
+endif
 set showmatch
 set hlsearch
-nnoremap / /\v
-vnoremap / /\v
+set display=truncate
+
+set smartindent
+
+"if has('mouse')
+"  set mouse=a
+"endif
+
+"nnoremap / /\v
+"vnoremap / /\v
 nnoremap <leader><space> :nohl<cr>
 nnoremap <up> <nop>
 nnoremap <down> <nop>
@@ -68,6 +84,12 @@ inoremap <left> <nop>
 inoremap <right> <nop>
 nnoremap j gj
 nnoremap k gk
+
+" from defaults.vim
+if !exists(":DO")
+  command DO vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+		  \ | wincmd p | diffthis
+endif
 
 " Jira type
 inoremap <c-j><c-t> {color:green}__{color}<ESC>7hi
@@ -136,7 +158,7 @@ vnoremap <leader>b :call BCComment()<cr>
 vnoremap <leader>B :call BCUncomment()<cr>
 
 function! Comment()
-    if &filetype == 'c' || &filetype == 'cpp' || &filetype == 'lex' || &filetype == 'yacc' || &filetype == 'eql' || &filetype == 'javascript'
+    if &filetype == 'c' || &filetype == 'cpp' || &filetype == 'lex' || &filetype == 'yacc' || &filetype == 'eql' || &filetype == 'javascript' || &filetype == 'proto'
         exec "normal" "I//\<esc>j"
     elseif &filetype == 'vim'
         exec "normal" "I\"\<esc>j"
@@ -154,7 +176,7 @@ function! Comment()
 endfunction
 
 function! BComment() range
-    if &filetype == 'c' || &filetype == 'cpp' || &filetype == 'lex' || &filetype == 'yacc' || &filetype == 'eql' || &filetype == 'javascript'
+    if &filetype == 'c' || &filetype == 'cpp' || &filetype == 'lex' || &filetype == 'yacc' || &filetype == 'eql' || &filetype == 'javascript' || &filetype == 'proto'
         let repl = '\1//'
     elseif &filetype == 'vim'
         let repl = '\1"'
@@ -179,7 +201,7 @@ function! BComment() range
 endfunction
 
 function! UnComment()
-    if &filetype == 'c' || &filetype == 'cpp' || &filetype == 'lex' || &filetype == 'yacc' || &filetype == 'eql' || &filetype == 'javascript'
+    if &filetype == 'c' || &filetype == 'cpp' || &filetype == 'lex' || &filetype == 'yacc' || &filetype == 'eql' || &filetype == 'javascript' || &filetype == 'proto'
         s/^\(\s*\)\/\//\1/
     elseif &filetype == 'vim'
         s/^\(\s*\)"/\1/
@@ -197,7 +219,7 @@ function! UnComment()
 endfunction
 
 function! BUnComment() range
-    if &filetype == 'c' || &filetype == 'cpp' || &filetype == 'lex' || &filetype == 'yacc' || &filetype == 'eql' || &filetype == 'javascript'
+    if &filetype == 'c' || &filetype == 'cpp' || &filetype == 'lex' || &filetype == 'yacc' || &filetype == 'eql' || &filetype == 'javascript' || &filetype == 'proto'
         let pat = '//'
     elseif &filetype == 'vim'
         let pat = '"'
@@ -259,8 +281,10 @@ function! BReMacro(term0, term1) range
     endfor
 endfunction
 
-function! MyCExt()
-    if &filetype == 'c'
+function! MySyntaxExt()
+    "colorscheme elflord
+    if &filetype == 'c' || &filetype == 'cpp'
+        syn match mrkcfmt /PRI[a-zA-Z0-9]*/
         syn match mrkl4c /[A-Z_]*_LDEBUG/
         syn match mrkl4c /[A-Z_]*_LINFO/
         syn match mrkl4c /[A-Z_]*_LWARNING/
@@ -268,33 +292,77 @@ function! MyCExt()
         syn match mrktrace /\<TRACEN\>/
         syn match mrktrace /\<TRACEC\>/
         syn match mrktrace /\<CTRACE\>/
+        syn match mrktrace /\<LTRACE\>/
+        syn match mrktrace /\<LTRACEN\>/
         syn match mrktrace /\<TRACE\>/
         syn match mrkcomm /\<UNUSED\>/
+        syn match mrkcomm /\<RESERVED\>/
+        syn match mrkcomm /\<NORETURN\>/
+        syn match mrkcomm /\<PRINTFLIKE\>/
         syn match mrkcomm /\<MRKLIKELY\>/
         syn match mrkcomm /\<MRKUNLIKELY\>/
+        syn match mrkcomm /\<countof\>/
         syn match mrkcomm /\<FAIL\>/
+        hi _mrkcfmt ctermfg=darkmagenta
         hi _mrkl4c ctermfg=darkyellow
         hi _mrktrace ctermfg=darkyellow
         hi _mrkcomm ctermfg=darkgreen
         command -nargs=+ HiLink hi def link <args>
+        HiLink mrkcfmt _mrkcfmt
         HiLink mrkl4c _mrkl4c
         HiLink mrktrace _mrktrace
         HiLink mrkcomm _mrkcomm
+        HiLink cOctalZero cError
         delcommand HiLink
+        set cindent
+
+    else
+        if &filetype == 'proto'
+            syn keyword protoRepeat optional required repeated oneof
+        endif
     endif
 endfunction
-au BufNewFile,BufRead *.c           call MyCExt()
+
+function! MyHTMLSettings()
+    set softtabstop=2
+    set shiftwidth=2
+    set tabstop=2
+endfunction
+
+au Syntax c,cpp,proto   call MySyntaxExt()
+au Syntax html   call MyHTMLSettings()
 
 nnoremap <leader>c :call Comment()<cr>
 vnoremap <leader>c :call BComment()<cr>
 nnoremap <leader>u :call UnComment()<cr>
 vnoremap <leader>u :call BUnComment()<cr>
 vnoremap <leader>d :call BUnMacro('\\')<cr>
-nnoremap <leader>l :call MyCExt()<cr>
 vnoremap <leader>m :call BMacro('\')<cr>
 vnoremap <leader>r :call BReMacro('\\', '\')<cr>
 nnoremap <leader>8 <c-w>80\|
 vnoremap <leader>8 <c-w>80\|
+nnoremap <leader>t :call MySyntaxExt()<cr>
+
+"nnoremap gl "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o>/\w\+\_W\+<CR><c-l>:nohlsearch<CR>
+"nnoremap gh "_yiw?\w\+\_W\+\%#<CR>:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o><c-l>:nohlsearch<CR>
+
+"au BufNewFile,BufRead *.ly setf ly
+"au Syntax ly runtime! /usr/local/share/lilypond/current/vim/syntax/lilypond.vim
+
+function! MySwap()
+    exec 'normal' 'yiw'
+    let p0 = getcurpos()
+    echo 'p0='.p0[1].'/'.p0[2]
+    let p1 = searchpos('\v\W|$', 'nzW')
+    echo 'p1='.p1[0].'/'.p1[1]
+    call cursor(p1)
+    let p2 = searchpos('\w', 'nzW')
+    echo 'p2='.p2[0].'/'.p2[1]
+    call cursor(p2)
+    let p3 = searchpos('\v\W|$', 'nzW')
+    echo 'p3='.p3[0].'/'.p3[1]
+    "call setpos('.', p0)
+endfunction
 
 ab teh the
 ab Teh The
@@ -305,3 +373,4 @@ ab ahve have
 ab ouy you
 ab ALthough Although
 ab BEfore Before
+

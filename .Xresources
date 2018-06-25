@@ -11,7 +11,8 @@
 *borderWidth:0
 *titeInhibit:off
 *charClass:33:48,35:48,37-38:48,43-47:48,58:48,61:48,63-64:48,95:48,126:48
-XTerm*background:#101010
+
+XTerm*background:#202028
 !XTerm*background:#ffffff
 XTerm*foreground:#969696
 XTerm*boldMode:false
@@ -22,6 +23,12 @@ XTerm*boldMode:false
 !XTerm*termName:linux
 XTerm.vt100.altSendsEscape:on
 !XTerm*jumpScroll:on
+
+!QweXTerm*background:#202038
+!QweXTerm*foreground:#969696
+!QweXTerm*boldMode:false
+!QweXTerm.vt100.altSendsEscape:on
+
 
 xscreensaver.splash:false                                                       
 xscreensaver.passwdTimeout:5

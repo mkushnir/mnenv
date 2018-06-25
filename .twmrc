@@ -10,7 +10,7 @@ NoDefaults
 #AutoRaise { "XTerm" }
 
 #NoIconManagers
-#ShowIconManager
+ShowIconManager
 #SortIconManager
 #IconManagerDontShow {}
 #IconManagerShow {}
@@ -54,7 +54,8 @@ WindowRing {
     "mpv"
     "feh"
     "Gimp"
-    "Xpdf"
+    "XpdfReader"
+    "TigerVNC"
 }
 
 
@@ -70,7 +71,7 @@ NoTitle {
     "feh"
 }
 
-#IconRegion "=800x100+0+0" North West 10 10
+#IconRegion "=1440x64+0-0" South West 32 32
 
 IconManagerDontShow {
     "xclock"
@@ -79,12 +80,12 @@ DontIconifyByUnmapping {
     "xclock"
 }
 
-ClientBorderWidth
 NoHighlight
 
 FramePadding 0
 
-BorderWidth 0
+#ClientBorderWidth
+BorderWidth 1
 IconBorderWidth 0
 MenuBorderWidth 0
 TitleButtonBorderWidth 0
@@ -103,8 +104,8 @@ IconManagerFont "-*-dejavu sans light-extralight-r-normal--*-90-*-*-*-*-*-*"
 
 Color
 {
-    #BorderColor             "#cccacc"
-    BorderColor             "#000000"
+    BorderColor             "#28282c" { "xclock" "#000000" }
+    #BorderColor             "#000000"
     DefaultBackground       "rgb:0/0/0"
     DefaultForeground       "#cccacc"
     #TitleBackground         "rgb:0/0/0"
@@ -115,12 +116,12 @@ Color
     MenuBackground          "#28282c"
     #MenuForeground          "#cccacc"
     MenuForeground          "#585878"
-    MenuBorderColor         "black"
+    MenuBorderColor         "#28282c"
     MenuTitleBackground     "#28282c"
     MenuTitleForeground     "#785878"
     IconBackground          "rgb:0/0/0"
     IconForeground          "#cccacc"
-    IconBorderColor         "#cccacc"
+    IconBorderColor         "#28282c"
     IconManagerBackground   "#28282c"
     IconManagerForeground   "#585878"
     IconManagerHighlight    "#000000"
@@ -155,13 +156,13 @@ Function "wprev" {
 }
 
 Function "qwe" {
-    f.showiconmgr
+    #f.showiconmgr
     #f.downiconmgr
     f.forwiconmgr
 }
 
 Function "asd" {
-    f.showiconmgr
+    #f.showiconmgr
     #f.upiconmgr
     f.backiconmgr
 }
@@ -214,8 +215,9 @@ Button3 = m  : window|icon : f.resize
 "l"     = m4    : all : f.exec "xlock &"
 "m"     = m     : all : f.iconify
 "m"     = m4    : all : f.iconify
+"p"     = m4    : all : f.exec "xpdf &"
 "space" = m     : all : f.fullzoom
-"t"     = m4    : all : f.exec "xterm &"
+"t"     = m4    : all : f.exec "xterm -s &"
 "r"     = m4    : all : f.restart
 
 #

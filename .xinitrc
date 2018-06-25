@@ -6,7 +6,7 @@
 xrdb -merge ~/.Xresources
 
 xset m 7/10 1
-xset r rate 300 67
+xset r rate 300 21
 
 #xset dpms 300 0 0
 xset -dpms
@@ -24,7 +24,7 @@ mixer vol 100
 mixer pcm 100
 mixer treble 90
 mixer bass 60
-mixer rec 60
+mixer rec 80
 mixer mic 70
 mixer line 90
 mixer speaker 0
@@ -33,10 +33,10 @@ mixer igain 0
 mixer ogain 0
 
 
-#xclock -bg black -fg white -geometry "80x80-0-0" -chime -render &
-xclock -digital -strftime '%A %d %b %H:%M' -bg black -fg white -geometry "-0-0" -padding 4 -chime -render &
+#xclock -digital -strftime '%A %d %b %H:%M' -bg black -fg white -geometry "220x24-0-0" -padding 4 -chime -render &
+#xclock -digital -strftime '%A %d %b %H:%M' -bg black -fg white -geometry "220x24-0-0" -padding 4 -render &
+xclock -bg black -fg white -geometry "80x80-0-0" -chime -render &
 exec /usr/local/bin/twm
-#exec /usr/local/bin/vtwm -f $HOME/.vtwmrc
 
 #cairo-dock -o &
 #exec /usr/local/bin/lxsession -a
