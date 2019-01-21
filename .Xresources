@@ -1,12 +1,80 @@
 *StringConversionWarnings:on
-!*faceName:lucida console
-!*faceName:liberation mono
-!*faceName:droid sans mono
-!*faceName:dejavu sans mono
-*faceName:inconsolata lgc
+
+*faceSize:11
+*faceName:ubuntu mono
+!
+fliberam*faceSize:9
+fliberam*faceName:liberation mono
+!
+fdroi*faceSize:9
+fdroi*faceName:droid sans mono
+!
+finco*faceSize:9
+finco*faceName:inconsolata lgc
+!
+fluci*faceSize:9
+fluci*faceName:lucida console
+!
+!*faceName:courier 10 pitch
+!*faceSize:9
+!
+fdeja*faceSize:9
+fdeja*faceName:dejavu sans mono
+!*faceSize:9
+!*faceName:camingocode
+!*faceSize:9
+!*faceName:m+ 1m
+!*faceSize:9
 !*faceName:luxi mono
+!*faceSize:9
 !*faceName:Bitstream Vera Sans Mono
-*faceSize:9
+!
+!*faceSize:9
+!*faceName:*-sf compact display-*iso10646-1
+!
+!*faceSize:9
+!*faceName:*-sf compact text-*iso10646-1
+!
+!qweqwe*faceSize:11
+!qweqwe*faceName:sf pro text-*
+!
+!*faceSize:11
+!*faceName:console-*-iso10646-1
+!
+!*faceName:lettering1
+!*faceName:teleprinter
+!
+! best terminus sizes:
+!    12 px or 9 pt
+!    14 px or 10.5 pt
+!    16 px or 12 pt
+!    18 px or 13.5 pt
+!    20 px or 15 pt
+!    22 px or 16.5 pt
+!    24 px or 18 pt
+!    28 px or 21 pt
+!    32 px or 24 pt
+!qweqwe*faceSize:10.5
+!qweqwe*faceName:*-misc-terminus  ttf -medium-r-normal--0-0-0-0-m-0-ibm-*
+!
+!qweqwe*faceSize:9
+!qweqwe*faceName:source code pro
+!qweqwe*faceName:source code pro extralight
+!qweqwe*faceName:source code pro light
+!qweqwe*faceName:source code pro medium
+!qweqwe*faceName:source code pro black
+!
+!qweqwe*faceSize:11
+!qweqwe*faceName:proggycleantt
+!
+!qweqwe*faceSize:9
+!qweqwe*faceName:consola mono
+!
+!qweqwe*faceSize:9
+!qweqwe*faceName:fantasque sans mono
+!
+
+
 *selectToClipboard: on
 *borderWidth:0
 *titeInhibit:off
@@ -54,6 +122,4 @@ gnuplot*borderColor:#eeeeee
 gnuplot*axisColor:#eeeeee
 gnuplot*borderWidth:0
 
-
-!*font:inconsolata lgc
 !*reverseVideo:true

@@ -1,0 +1,115 @@
+# $FreeBSD: src/share/skel/dot.shrc,v 1.3 2002/07/23 12:28:16 jmallett Exp $
+#
+# .shrc - bourne shell startup file 
+#
+# This file will be used if the shell is invoked for interactive use and
+# the environment variable ENV is set to this file.
+#
+# see also sh(1), environ(7).
+#
+
+#echo "Reading .shrc ..."
+# file permissions: rwxr-xr-x
+#
+# umask	022
+
+# Setting TERM is normally done through /etc/ttys.  Do only override
+# if you're sure that you'll never log in via telnet or xterm or a
+# serial line.
+# Use cons25l1 for iso-* fonts
+# TERM=cons25; 	export TERM
+#TERM=rxvt; export TERM
+#TERM=linux; export TERM
+
+#TERM=rxvt; export TERM
+#TERM=linux; export TERM
+#export TERM=xterm-color
+#export TERM=xterm
+#export TERM=mvterm
+# te/ti are set:
+#export TERM=xterm-xfree86
+export TERM=xterm-256color
+#export MN_CONFIGURE_ARGS="--with-cmocka"
+unset MN_CONFIGURE_ARGS
+
+
+
+# some useful aliases
+# # be paranoid
+# alias cp='cp -ip'
+# alias mv='mv -i'
+# alias rm='rm -i'
+
+alias who='who -THu'
+alias rsync='rsync --verbose --recursive --delete --force --times --compress --progress --cvs-exclude'
+
+alias h='fc -l'
+alias j=jobs
+alias m="$PAGER"
+alias ll='ls -hlaFo'
+alias l='ls -l'
+alias g='egrep -i'
+alias grep='grep -I'
+alias less='less -R'
+#alias vim='vim --servername VIM'
+
+alias ssh-addkeys='for i in id_rsa id_rsa-cldev id_rsa-docean id_rsa-ansible-test; do ssh-add $HOME/.ssh/$i; done;'
+alias ssh-nocheck='ssh -C -o StrictHostKeyChecking=no'
+alias scp-nocheck='scp -C -o StrictHostKeyChecking=no'
+alias perf5='ssh -C perf5.qa.llnw.net'
+alias perf6='ssh -C perf6.qa.llnw.net'
+alias perf13='ssh -C perf13.qa.llnw.net'
+alias perf14='ssh -C perf14.qa.llnw.net'
+alias cds1='ssh -C cds1.phx3.llnw.net'
+alias dev1='ssh -C dev1.qa.llnw.net'
+alias qa2='ssh -C qa2.qa.llnw.net'
+alias qa6='ssh -C qa6.qa.llnw.net'
+alias qa17='ssh -C qa17.qa.llnw.net'
+alias qa22='ssh -C -i .ssh/rtest_dsa root@qa22.qa.llnw.net'
+alias qa45='ssh -C qa45.qa.llnw.net'
+alias emu='ssh -C emu.phx3.llnw.net'
+alias ux='ssh -C unix.llnw.com'
+alias mko='ssh -C mkushnir-office'
+alias ics500='ssh -C -i .ssh/rtest_dsa root@ics500.qa.llnw.net'
+alias focs600='ssh -C -i .ssh/rtest_dsa root@focs600.qa.llnw.net'
+alias eq-app-1='ssh -C eq-app-1.phx7.llnw.net'
+alias eq-app-2='ssh -C eq-app-2.phx7.llnw.net'
+alias eq-app-4='ssh -C eq-app-4.phx7.llnw.net'
+alias eq-app-7='ssh -C eq-app-7.phx7.llnw.net'
+alias eq-bill-stg-1='ssh -C eq-bill-stg-1.phx7.llnw.net'
+alias llp-dev-1='ssh -C llp-dev-1.phx2.llnw.net'
+alias lmd-dev-01='ssh -C lmd-dev-01.phx2.lldns.net'
+alias wombat='ssh -C wombat.phx2.llnw.net'
+alias eqbs-6='ssh -C eq-bill-stg-6.phx2.llnw.net'
+alias ub12dev='ssh -oStrictHostKeyChecking=no 10.1.2.101'
+alias ub12build='ssh -oStrictHostKeyChecking=no 10.1.2.103'
+alias ub14dev='ssh -oStrictHostKeyChecking=no 10.1.2.104'
+alias ub14build='ssh -oStrictHostKeyChecking=no 10.1.2.107'
+alias localcvsroot='export CVSROOT=/home/cvs'
+alias pygrep='grep --include "*.py" --include "*pyx" --include "*.pxd"'
+alias cgrep='grep --include "*.h" --include "*.c" --include "*.cc" --include "*.hh"'
+alias git-status='git status -sb'
+alias git-branches='git branch -a'
+alias client-chroot='sudo chroot -u toor /data0/mkushnir/eq/client-chroot tmux attach'
+alias bibi-ci='ssh azureuser@bibi-ci.cloudapp.net'
+alias svim='vim --servername QWE --'
+alias cvim='vim --remote-send "<ESC>:wa<ENTER>:qa<ENTER>" --servername QWE --'
+alias winch='kill -WINCH $$'
+alias rt-restart='sudo rt stop; sudo rt start;'
+alias rt-start='sudo rt start;'
+alias rt-stop='sudo rt stop;'
+alias pg='sudo -u pgsql psql'
+alias showcolors='for i in {0..255}; do printf "\x1b[38;5;${i}mcolour${i}\n"; done'
+alias pkg-selected='pkg query -e "%a == 0" %o|sort'
+alias mnpsql='psql -tx -P border=off auth postgres'
+#alias mndo-01='ssh mndo-01.mooo.com.'
+alias mndo-02='ssh mndo-02.mooo.com.'
+alias tpear='ssh toor@pear.'
+alias tlocal='sudo -u toor bash -l'
+alias rvm148='ssh administrator@vm-148.'
+alias ssh-agent-init='ssh-agent -s >$HOME/.ssh-agent.env'
+
+set -o physical
+set -o vi
+
+# 69e7c2ed55864472506e68cdf63c9d1cc660d53d

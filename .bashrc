@@ -25,3 +25,11 @@ then
 else
     PS1='\[\033[01;38m\]\h:\[\033[01;38m\]\A\[\033[00m\]:\[\033[01;38m\]\W\[\033[00m\]\$ '
 fi
+
+_service() {
+    local c
+    c=${COMP_WORDS[COMP_CWORD]}
+    COMPREPLY=( $(compgen -W '$( service -l )' -- $c) )
+    return 0
+}
+complete -F _service service

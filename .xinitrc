@@ -33,10 +33,16 @@ mixer igain 0
 mixer ogain 0
 
 
+#exec xterm -n login
+
 #xclock -digital -strftime '%A %d %b %H:%M' -bg black -fg white -geometry "220x24-0-0" -padding 4 -chime -render &
 #xclock -digital -strftime '%A %d %b %H:%M' -bg black -fg white -geometry "220x24-0-0" -padding 4 -render &
 xclock -bg black -fg white -geometry "80x80-0-0" -chime -render &
+
+
 exec /usr/local/bin/twm
+#exec /data1/mkushnir/development/dwm/dwm
+#exec /usr/local/bin/ctwm --single --nowelcome -f $HOME/.ctwm/.ctwmrc
 
 #cairo-dock -o &
 #exec /usr/local/bin/lxsession -a
