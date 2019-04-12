@@ -53,7 +53,7 @@ alias grep='grep -I'
 alias less='less -R'
 #alias vim='vim --servername VIM'
 
-alias ssh-addkeys='for i in id_rsa id_rsa-cldev id_rsa-docean id_rsa-ansible-test; do ssh-add $HOME/.ssh/$i; done;'
+alias ssh-addkeys='for i in id_rsa id_rsa-docean id_rsa-ansible-test id_rsa-jenkins-test; do ssh-add $HOME/.ssh/$i; done;'
 alias ssh-nocheck='ssh -C -o StrictHostKeyChecking=no'
 alias scp-nocheck='scp -C -o StrictHostKeyChecking=no'
 alias perf5='ssh -C perf5.qa.llnw.net'

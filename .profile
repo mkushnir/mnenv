@@ -7,7 +7,7 @@
 
 # remove /usr/games and /usr/X11R6/bin if you want
 #echo "Reading .profile ..."
-PATH=$HOME/bin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/games:/usr/local/sbin:/usr/local/bin:/root/bin:$HOME/share; export PATH
+PATH=$HOME/bin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/games:/usr/local/sbin:/usr/local/bin:/usr/local/mngembel/bin:/root/bin:$HOME/share; export PATH
 
 #MM_CHARSET=KOI8-U; export MM_CHARSET
 #LANG=uk_UA.KOI8-U; export LANG

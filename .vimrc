@@ -63,7 +63,9 @@ if has('reltime')
 endif
 set showmatch
 set hlsearch
-set display=truncate
+if v:version >= 800
+    set display=truncate
+endif
 
 set smartindent
 
@@ -284,7 +286,8 @@ endfunction
 function! MySyntaxExt()
     "colorscheme elflord
     if &filetype == 'c' || &filetype == 'cpp'
-        syn match mrkcfmt /PRI[a-zA-Z0-9]*/
+        syn match mrkcfmt /PRI[diouxX][a-zA-Z0-9]*/
+        syn match mrkcfmt /SCN[dioux][a-zA-Z0-9]*/
         syn match mrkl4c /[A-Z_]*_LDEBUG/
         syn match mrkl4c /[A-Z_]*_LINFO/
         syn match mrkl4c /[A-Z_]*_LWARNING/
@@ -297,21 +300,27 @@ function! MySyntaxExt()
         syn match mrktrace /\<TRACE\>/
         syn match mrkcomm /\<UNUSED\>/
         syn match mrkcomm /\<RESERVED\>/
+        syn match mrkcomm /\<DEPRECATED\>/
+        syn match mrkcomm /\<PACKED\>/
         syn match mrkcomm /\<NORETURN\>/
         syn match mrkcomm /\<PRINTFLIKE\>/
         syn match mrkcomm /\<MRKLIKELY\>/
         syn match mrkcomm /\<MRKUNLIKELY\>/
         syn match mrkcomm /\<countof\>/
-        syn match mrkcomm /\<FAIL\>/
+        syn match mrkcomm /\<F\?FAIL\>/
+        syn match mrkty /\<mn[a-z0-9_]*_t\>/
+        syn match mrkty /\<mrk[a-z0-9_]*_t\>/
         hi _mrkcfmt ctermfg=darkmagenta
         hi _mrkl4c ctermfg=darkyellow
         hi _mrktrace ctermfg=darkyellow
         hi _mrkcomm ctermfg=darkgreen
+        hi _mrkty ctermfg=cyan
         command -nargs=+ HiLink hi def link <args>
         HiLink mrkcfmt _mrkcfmt
         HiLink mrkl4c _mrkl4c
         HiLink mrktrace _mrktrace
         HiLink mrkcomm _mrkcomm
+        HiLink mrkty _mrkty
         HiLink cOctalZero cError
         delcommand HiLink
         set cindent
@@ -330,7 +339,7 @@ function! MyHTMLSettings()
 endfunction
 
 au Syntax c,cpp,proto   call MySyntaxExt()
-au Syntax html   call MyHTMLSettings()
+au Syntax html,javascript   call MyHTMLSettings()
 
 nnoremap <leader>c :call Comment()<cr>
 vnoremap <leader>c :call BComment()<cr>

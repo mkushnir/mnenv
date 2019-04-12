@@ -57,6 +57,8 @@ WindowRing {
     "XpdfReader"
     "TigerVNC"
     "vncviewer"
+    "Gnuplot"
+    "libreoffice"
 }
 
 
