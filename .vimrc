@@ -8,6 +8,8 @@ set nolist
 set listchars=tab:>-,trail:-
 set modeline
 
+set path=.,/usr/include,/usr/local/include,$HOME/include
+
 if v:version >= 800
     set fixendofline
 endif
@@ -302,6 +304,7 @@ function! MySyntaxExt()
         syn match mrkcomm /\<RESERVED\>/
         syn match mrkcomm /\<DEPRECATED\>/
         syn match mrkcomm /\<PACKED\>/
+        syn match mrkcomm /\<NONNULL\>/
         syn match mrkcomm /\<NORETURN\>/
         syn match mrkcomm /\<PRINTFLIKE\>/
         syn match mrkcomm /\<MRKLIKELY\>/
