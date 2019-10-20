@@ -109,6 +109,17 @@ alias tlocal='sudo -u toor bash -l'
 alias rvm148='ssh administrator@vm-148.'
 alias ssh-agent-init='ssh-agent -s >$HOME/.ssh-agent.env'
 
+alias lgrep='grep --include "*.log" --include "*.decoded" --include "*.txt"'
+alias mlgrep='grep --include "MCU_*.log"'
+alias vlgrep='grep --include "MVP_*.log"'
+alias algrep='grep --include "MAP_*.log"'
+alias dlgrep='grep --include "DspApp_*.log" --include "*.decoded"'
+alias ilgrep='grep --include "ICS_*.log" --include "*.decoded"'
+alias logn='sed -E "s/^.*\\.(log|decoded|txt)[:-][0-9]+[:-]//"'
+alias logb='sed -E "s,^.*/([^/]+\\.(log|decoded|txt))[:-][0-9]+[:-](.*)$,\\1\\t\\3,"'
+alias mngmail='/data1/mkushnir/development/test-googleapi/send-01'
+
+
 set -o physical
 set -o vi
 

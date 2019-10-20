@@ -80,6 +80,8 @@ export GREP_COLOR="1;31"
 export COLORTERM=1
 export LSCOLORS=gxfxcxdxbxegedabagacad
 
+export SDL_VIDEO_ALLOW_SCREENSAVER=1
+
 #export TMPDIR=$HOME/tmp
 
 cd() {

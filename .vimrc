@@ -7,6 +7,7 @@ set autoindent
 set nolist
 set listchars=tab:>-,trail:-
 set modeline
+set lazyredraw
 
 set path=.,/usr/include,/usr/local/include,$HOME/include
 
@@ -174,6 +175,8 @@ function! Comment()
         exec "normal" "I\;\<esc>j"
     elseif &filetype == 'xdefaults'
         exec "normal" "I\!\<esc>j"
+    elseif &filetype == 'tex'
+        exec "normal" "I\%\<esc>j"
     else
         exec "normal" "I#\<esc>j"
     endif
@@ -192,6 +195,8 @@ function! BComment() range
         let repl = '\1;'
     elseif &filetype == 'xdefaults'
         let repl = '\1!'
+    elseif &filetype == 'tex'
+        let repl = '\1%'
     else
         let repl = '\1#'
     endif
@@ -217,6 +222,8 @@ function! UnComment()
         s/^\(\s*\);/\1/
     elseif &filetype == 'xdefaults'
         s/^\(\s*\)!/\1/
+    elseif &filetype == 'tex'
+        s/^\(\s*\)%/\1/
     else
         s/^\(\s*\)#/\1/
     endif
@@ -235,6 +242,8 @@ function! BUnComment() range
         let pat = ';'
     elseif &filetype == 'xdefaults'
         let pat = '!'
+    elseif &filetype == 'tex'
+        let pat = '%'
     else
         let pat = '#'
     endif
@@ -294,6 +303,7 @@ function! MySyntaxExt()
         syn match mrkl4c /[A-Z_]*_LINFO/
         syn match mrkl4c /[A-Z_]*_LWARNING/
         syn match mrkl4c /[A-Z_]*_LERROR/
+        syn match mrkl4c /[A-Z_]*_LLOG/
         syn match mrktrace /\<TRACEN\>/
         syn match mrktrace /\<TRACEC\>/
         syn match mrktrace /\<CTRACE\>/
@@ -313,6 +323,9 @@ function! MySyntaxExt()
         syn match mrkcomm /\<F\?FAIL\>/
         syn match mrkty /\<mn[a-z0-9_]*_t\>/
         syn match mrkty /\<mrk[a-z0-9_]*_t\>/
+        syn match mrkex /\<NAN\>/
+        syn match mrkex /\<INFINITY\>/
+        syn keyword cStorageClass restrict
         hi _mrkcfmt ctermfg=darkmagenta
         hi _mrkl4c ctermfg=darkyellow
         hi _mrktrace ctermfg=darkyellow
@@ -324,6 +337,7 @@ function! MySyntaxExt()
         HiLink mrktrace _mrktrace
         HiLink mrkcomm _mrkcomm
         HiLink mrkty _mrkty
+        HiLink mrkex cConstant
         HiLink cOctalZero cError
         delcommand HiLink
         set cindent
