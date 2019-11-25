@@ -390,13 +390,29 @@ function! MySwap()
     "call setpos('.', p0)
 endfunction
 
-ab teh the
-ab Teh The
-ab TEH THE
-ab ocnfiguration configuration
-ab NOne None
-ab ahve have
-ab ouy you
-ab ALthough Although
-ab BEfore Before
+if has("cscope")
+    set csprg=/usr/local/bin/cscope
+    set csto=0
+    set cst
+    set nocsverb
+    " add any database in current directory
+    if filereadable("cscope.out")
+        cs add cscope.out
+    " else add database pointed to by environment
+    elseif $CSCOPE_DB != ""
+        cs add $CSCOPE_DB
+    endif
+    set csverb
 
+    nnoremap <leader>s :vert scs find s <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <leader>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>
+
+    nnoremap <leader>F :vert scs find c <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <leader>f :vert scs find d <C-R>=expand("<cword>")<CR><CR>
+
+    nnoremap <leader>T :vert scs find t <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <leader>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <leader>i :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+    nnoremap <leader>I :vert scs find f <C-R>=expand("<cfile>")<CR><CR>
+    nnoremap <leader>a :vert scs find a <C-R>=expand("<cword>")<CR><CR>
+endif
