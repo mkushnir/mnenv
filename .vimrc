@@ -322,23 +322,40 @@ function! MySyntaxExt()
         syn match mrkcomm /\<countof\>/
         syn match mrkcomm /\<F\?FAIL\>/
         syn match mrkty /\<mn[a-z0-9_]*_t\>/
+        syn match mrkty /\<MN[A-Z0-9]*_[A-Z0-9_]*\>/
         syn match mrkty /\<mrk[a-z0-9_]*_t\>/
+        syn match mrkty /\<MRK[A-Z0-9]*_[A-Z0-9_]*\>/
+        syn match mrkfn /\<mn[a-z0-9]*_[a-z0-9_]*\>/
+        syn match mrkfn /\<mrk[a-z0-9]*_[a-z0-9_]*\>/
         syn match mrkex /\<NAN\>/
         syn match mrkex /\<INFINITY\>/
+        syn match mrkft /\<FT_[a-zA-Z0-9_]*\>/
+        syn match mrkxft /\<[Xx][Ff][Tt][a-zA-Z0-9_]*\>/
+        syn match mrkfc /\<F[Cc][a-zA-Z0-9_]*\>/
+        syn match mrkxr /\<XRender[a-zA-Z0-9_]*\>/
+        syn match mrkxcb /\<[Xx][Cc][Bb]_[a-zA-Z0-9_]*\>/
         syn keyword cStorageClass restrict
         hi _mrkcfmt ctermfg=darkmagenta
         hi _mrkl4c ctermfg=darkyellow
         hi _mrktrace ctermfg=darkyellow
         hi _mrkcomm ctermfg=darkgreen
         hi _mrkty ctermfg=cyan
+        hi _mrkfn ctermfg=cyan
+        hi _mrktp ctermfg=lightcyan
         command -nargs=+ HiLink hi def link <args>
         HiLink mrkcfmt _mrkcfmt
         HiLink mrkl4c _mrkl4c
         HiLink mrktrace _mrktrace
         HiLink mrkcomm _mrkcomm
         HiLink mrkty _mrkty
+        HiLink mrkfn _mrkfn
         HiLink mrkex cConstant
         HiLink cOctalZero cError
+        HiLink mrkft _mrktp
+        HiLink mrkxft _mrktp
+        HiLink mrkfc _mrktp
+        HiLink mrkxr _mrktp
+        HiLink mrkxcb _mrktp
         delcommand HiLink
         set cindent
 
@@ -368,6 +385,7 @@ vnoremap <leader>r :call BReMacro('\\', '\')<cr>
 nnoremap <leader>8 <c-w>80\|
 vnoremap <leader>8 <c-w>80\|
 nnoremap <leader>t :call MySyntaxExt()<cr>
+nnoremap <leader>0 ^
 
 "nnoremap gl "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o>/\w\+\_W\+<CR><c-l>:nohlsearch<CR>
 "nnoremap gh "_yiw?\w\+\_W\+\%#<CR>:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o><c-l>:nohlsearch<CR>
@@ -407,8 +425,8 @@ if has("cscope")
     nnoremap <leader>s :vert scs find s <C-R>=expand("<cword>")<CR><CR>
     nnoremap <leader>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>
 
-    nnoremap <leader>F :vert scs find c <C-R>=expand("<cword>")<CR><CR>
-    nnoremap <leader>f :vert scs find d <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <leader>F :vert scs find d <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <leader>f :vert scs find c <C-R>=expand("<cword>")<CR><CR>
 
     nnoremap <leader>T :vert scs find t <C-R>=expand("<cword>")<CR><CR>
     nnoremap <leader>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>

@@ -122,6 +122,9 @@ export REPLYTO=markiyan.kushnir@gmail.com
 
 #export BIBI_DEV_APPROOT=/data2/mkushnir/development/bibi/qwe
 
+#export GALLIUM_HUD="fps,frametime,temperature,.c100cpu+GPU-load;samples-passed,draw-calls+decompress-calls+compute-calls;primitives-generated,clipper-invocations,clipper-primitives-generated,num-compilations,num-shaders-created,num-shader-cache-hits,GPU-shaders-busy"
+export GALLIUM_HUD="fps,temperature,.c100cpu+GPU-load"
+
 if test -z "$ENV"
 then
     ENV=$HOME/.shrc; export ENV

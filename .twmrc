@@ -59,6 +59,7 @@ WindowRing {
     "vncviewer"
     "Gnuplot"
     "libreoffice"
+    "gmrun"
 }
 
 
@@ -72,6 +73,7 @@ NoTitle {
     "xclock"
     "mpv"
     "feh"
+    "gmrun"
 }
 
 #IconRegion "=1440x64+0-0" South West 32 32
@@ -150,9 +152,9 @@ Cursors
 #
 # system.twmrc replcation
 #
-MoveDelta 3
-Function "move-or-lower" { f.move f.deltastop f.lower }
+MoveDelta 0
 Function "move-or-raise" { f.move f.deltastop f.raise }
+Function "move-or-lower" { f.move f.deltastop f.lower }
 Function "move-or-iconify" { f.move f.deltastop f.iconify }
 Function "wnext" {
     f.warpring "next"
@@ -224,7 +226,8 @@ Button3 = m  : window|icon : f.resize
 "p"     = m4    : all : f.exec "xpdf &"
 "space" = m     : all : f.fullzoom
 "t"     = m4    : all : f.exec "xterm -s &"
-"r"     = m4    : all : f.restart
+"r"     = m4    : all : f.exec "gmrun &"
+#"r"     = m4    : all : f.restart
 
 #
 # And menus with the usual things
