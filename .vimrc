@@ -297,65 +297,62 @@ endfunction
 function! MySyntaxExt()
     "colorscheme elflord
     if &filetype == 'c' || &filetype == 'cpp'
-        syn match mrkcfmt /PRI[diouxX][a-zA-Z0-9]*/
-        syn match mrkcfmt /SCN[dioux][a-zA-Z0-9]*/
-        syn match mrkl4c /[A-Z_]*_LDEBUG/
-        syn match mrkl4c /[A-Z_]*_LINFO/
-        syn match mrkl4c /[A-Z_]*_LWARNING/
-        syn match mrkl4c /[A-Z_]*_LERROR/
-        syn match mrkl4c /[A-Z_]*_LLOG/
-        syn match mrktrace /\<TRACEN\>/
-        syn match mrktrace /\<TRACEC\>/
-        syn match mrktrace /\<CTRACE\>/
-        syn match mrktrace /\<LTRACE\>/
-        syn match mrktrace /\<LTRACEN\>/
-        syn match mrktrace /\<TRACE\>/
-        syn match mrkcomm /\<UNUSED\>/
-        syn match mrkcomm /\<RESERVED\>/
-        syn match mrkcomm /\<DEPRECATED\>/
-        syn match mrkcomm /\<PACKED\>/
-        syn match mrkcomm /\<NONNULL\>/
-        syn match mrkcomm /\<NORETURN\>/
-        syn match mrkcomm /\<PRINTFLIKE\>/
-        syn match mrkcomm /\<MRKLIKELY\>/
-        syn match mrkcomm /\<MRKUNLIKELY\>/
-        syn match mrkcomm /\<countof\>/
-        syn match mrkcomm /\<F\?FAIL\>/
-        syn match mrkty /\<mn[a-z0-9_]*_t\>/
-        syn match mrkty /\<MN[A-Z0-9]*_[A-Z0-9_]*\>/
-        syn match mrkty /\<mrk[a-z0-9_]*_t\>/
-        syn match mrkty /\<MRK[A-Z0-9]*_[A-Z0-9_]*\>/
-        syn match mrkfn /\<mn[a-z0-9]*_[a-z0-9_]*\>/
-        syn match mrkfn /\<mrk[a-z0-9]*_[a-z0-9_]*\>/
-        syn match mrkex /\<NAN\>/
-        syn match mrkex /\<INFINITY\>/
-        syn match mrkft /\<FT_[a-zA-Z0-9_]*\>/
-        syn match mrkxft /\<[Xx][Ff][Tt][a-zA-Z0-9_]*\>/
-        syn match mrkfc /\<F[Cc][a-zA-Z0-9_]*\>/
-        syn match mrkxr /\<XRender[a-zA-Z0-9_]*\>/
-        syn match mrkxcb /\<[Xx][Cc][Bb]_[a-zA-Z0-9_]*\>/
+        syn match mncfmt /PRI[diouxX][a-zA-Z0-9]*/
+        syn match mncfmt /SCN[dioux][a-zA-Z0-9]*/
+        syn match mnl4c /[A-Z_]*_LDEBUG/
+        syn match mnl4c /[A-Z_]*_LINFO/
+        syn match mnl4c /[A-Z_]*_LWARNING/
+        syn match mnl4c /[A-Z_]*_LERROR/
+        syn match mnl4c /[A-Z_]*_LLOG/
+        syn match mntrace /\<TRACEN\>/
+        syn match mntrace /\<TRACEC\>/
+        syn match mntrace /\<CTRACE\>/
+        syn match mntrace /\<LTRACE\>/
+        syn match mntrace /\<LTRACEN\>/
+        syn match mntrace /\<TRACE\>/
+        syn match mncomm /\<UNUSED\>/
+        syn match mncomm /\<RESERVED\>/
+        syn match mncomm /\<DEPRECATED\>/
+        syn match mncomm /\<PACKED\>/
+        syn match mncomm /\<NONNULL\>/
+        syn match mncomm /\<NORETURN\>/
+        syn match mncomm /\<PRINTFLIKE\>/
+        syn match mncomm /\<MNLIKELY\>/
+        syn match mncomm /\<MNUNLIKELY\>/
+        syn match mncomm /\<countof\>/
+        syn match mncomm /\<F\?FAIL\>/
+        syn match mnty /\<mn[a-z0-9_]*_t\>/
+        syn match mnty /\<MN[A-Z0-9]*_[A-Z0-9_]*\>/
+        syn match mnfn /\<mn[a-z0-9]*_[a-z0-9_]*\>/
+        syn match mnex /\<NAN\>/
+        syn match mnex /\<INFINITY\>/
+        syn match mnft /\<FT_[a-zA-Z0-9_]*\>/
+        syn match mnxft /\<[Xx][Ff][Tt][a-zA-Z0-9_]*\>/
+        syn match mnfc /\<F[Cc][a-zA-Z0-9_]*\>/
+        syn match mnxr /\<XRender[a-zA-Z0-9_]*\>/
+        syn match mnxcb /\<[Xx][Cc][Bb]_[a-zA-Z0-9_]*\>/
         syn keyword cStorageClass restrict
-        hi _mrkcfmt ctermfg=darkmagenta
-        hi _mrkl4c ctermfg=darkyellow
-        hi _mrktrace ctermfg=darkyellow
-        hi _mrkcomm ctermfg=darkgreen
-        hi _mrkty ctermfg=cyan
-        hi _mrkfn ctermfg=cyan
-        hi _mrktp ctermfg=lightcyan
+        hi _mncfmt ctermfg=darkmagenta
+        hi _mnl4c ctermfg=darkyellow
+        hi _mntrace ctermfg=darkyellow
+        hi _mncomm ctermfg=darkgreen
+        hi _mnty ctermfg=cyan
+        hi _mnfn ctermfg=cyan
+        hi _mntp ctermfg=lightcyan
         command -nargs=+ HiLink hi def link <args>
-        HiLink mrkcfmt _mrkcfmt
-        HiLink mrkl4c _mrkl4c
-        HiLink mrktrace _mrktrace
-        HiLink mrkcomm _mrkcomm
-        HiLink mrkty _mrkty
-        HiLink mrkfn _mrkfn
-        HiLink mrkex cConstant
+        HiLink mncfmt _mncfmt
+        HiLink mnl4c _mnl4c
+        HiLink mntrace _mntrace
+        HiLink mncomm _mncomm
+        HiLink mnty _mnty
+        HiLink mnfn _mnfn
+        HiLink mnex cConstant
         HiLink cOctalZero cError
-        HiLink mrkft _mrktp
-        HiLink mrkxft _mrktp
-        HiLink mrkfc _mrktp
-        HiLink mrkxr _mrktp
-        HiLink mrkxcb _mrktp
+        HiLink mnft _mntp
+        HiLink mnxft _mntp
+        HiLink mnfc _mntp
+        HiLink mnxr _mntp
+        HiLink mnxcb _mntp
         delcommand HiLink
         set cindent
 
